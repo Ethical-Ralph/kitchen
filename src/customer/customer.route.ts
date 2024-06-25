@@ -1,9 +1,10 @@
 import express from "express";
 import { CustomerController } from "./customer.controller";
-import { authMiddleware } from "../middleware";
+import { authMiddleware, authorize } from "../middleware";
 import { CustomerService } from "./customer.service";
 import { ProductRepo, VendorRepo } from "../vendor/repository";
 import { handleAsyncError, validate, validateParamsIds } from "../utils";
+import { UserRoleEnum } from "../interfaces";
 
 const customerRouter = express.Router();
 
@@ -14,6 +15,8 @@ const vendorService = new CustomerService(vendorRepo, productRepo);
 const vendorController = new CustomerController(vendorService);
 
 customerRouter.use(authMiddleware);
+
+customerRouter.use(authorize(UserRoleEnum.CUSTOMER));
 
 customerRouter.get(
   "/vendors",
