@@ -1,4 +1,5 @@
 import app from "./app";
+import { serverEnv } from "./config";
 import { dataSource } from "./database";
 
 const init = () => {
@@ -8,8 +9,8 @@ const init = () => {
       .then(() => {
         console.log("Database Connected");
 
-        app.listen(3000, () => {
-          console.log("Express App Listening on Port 3000");
+        app.listen(serverEnv.PORT, () => {
+          console.log("Express App Listening on Port", serverEnv.PORT);
         });
       })
       .catch((err) => {

@@ -27,6 +27,7 @@ export class UserService {
 
     const registeredUser = await this.userRepo.save({
       ...data,
+      email: data.email.toLowerCase(),
       role: data?.role || UserRoleEnum.CUSTOMER,
       password: hashedPassword,
     });
