@@ -4,10 +4,13 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "nodemon src/server.ts",
+    "start:dev": "nodemon src/server.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start:prod": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.2",
+    "rimraf": "^5.0.7",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
