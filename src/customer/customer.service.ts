@@ -1,3 +1,4 @@
+import { NotFoundError } from "../utils";
 import { PaginationDto, PaginationResultDto } from "../utils/pagination";
 import { ProductRepo, VendorRepo } from "../vendor/repository";
 
@@ -21,10 +22,22 @@ export class CustomerService {
   }
 
   async getVendor(vendorId: string) {
-    return this.vendorRepo.findById(vendorId);
+    const vendor = await this.vendorRepo.findById(vendorId);
+
+    if (!vendor) {
+      throw new NotFoundError("Vendor not found");
+    }
+
+    return vendor;
   }
 
   async getVendorProducts(vendorId: string, query: PaginationDto) {
+    const vendor = await this.vendorRepo.findById(vendorId);
+
+    if (!vendor) {
+      throw new NotFoundError("Vendor not found");
+    }
+
     const [data, count] = await this.productRepo.findAndCount({
       where: { vendorId },
       order: { createdAt: query.order },
@@ -39,9 +52,21 @@ export class CustomerService {
   }
 
   async getVendorProduct(vendorId: string, productId: string) {
-    return this.productRepo.findOne({
+    const vendor = await this.vendorRepo.findById(vendorId);
+
+    if (!vendor) {
+      throw new NotFoundError("Vendor not found");
+    }
+
+    const product = await this.productRepo.findOne({
       where: { vendorId, id: productId },
       relations: { vendor: true },
     });
+
+    if (!product) {
+      throw new NotFoundError("Product not found");
+    }
+
+    return product;
   }
 }
