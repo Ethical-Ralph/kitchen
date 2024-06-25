@@ -1,6 +1,6 @@
 import { MockBaseRepository } from "../../../test/base.repository";
 import { NotFoundError } from "../../utils";
-import { Order } from "../../utils/pagination";
+import { RecordOrder } from "../../utils/pagination";
 import { Product, Vendor } from "../vendor/entity";
 import { CustomerService } from "./customer.service";
 
@@ -31,7 +31,7 @@ describe("CustomerService", () => {
         page: 1,
         skip: 0,
         limit: 10,
-        order: Order.ASC,
+        order: RecordOrder.ASC,
       });
 
       expect(result.data.length).toBe(2);
@@ -63,7 +63,7 @@ describe("CustomerService", () => {
           skip: 0,
           page: 1,
           limit: 10,
-          order: Order.ASC,
+          order: RecordOrder.ASC,
         })
       ).rejects.toThrow(NotFoundError);
     });
@@ -85,7 +85,7 @@ describe("CustomerService", () => {
         skip: 0,
         page: 1,
         limit: 10,
-        order: Order.ASC,
+        order: RecordOrder.ASC,
       });
 
       expect(result.data.length).toBe(2);

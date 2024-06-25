@@ -2,7 +2,7 @@ import { VendorService } from "./vendor.service";
 import { ConflictError } from "../../utils";
 import { MockBaseRepository } from "../../../test/base.repository";
 import { Product, Vendor } from "./entity";
-import { Order } from "../../utils/pagination";
+import { RecordOrder } from "../../utils/pagination";
 
 class MockVendorRepo extends MockBaseRepository<Vendor> {
   async findByUserId(userId: string): Promise<Vendor> {
@@ -100,7 +100,7 @@ describe("VendorService", () => {
           page: 1,
           limit: 10,
           skip: 0,
-          order: Order.ASC,
+          order: RecordOrder.ASC,
         })
       ).rejects.toThrow(ConflictError);
     });
@@ -120,7 +120,7 @@ describe("VendorService", () => {
         page: 1,
         skip: 0,
         limit: 10,
-        order: Order.ASC,
+        order: RecordOrder.ASC,
       });
 
       expect(result.data.length).toBe(2);

@@ -1,9 +1,9 @@
-export enum Order {
+export enum RecordOrder {
   ASC = "ASC",
   DESC = "DESC",
 }
 export class PaginationDto {
-  readonly order: Order = Order.DESC;
+  readonly order: RecordOrder = RecordOrder.DESC;
 
   readonly page: number = 1;
 
