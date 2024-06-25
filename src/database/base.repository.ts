@@ -39,10 +39,6 @@ export class BaseRepository<T extends BaseEntity> {
     return this.repository.save(entity);
   }
 
-  async bulkCreate(entities: T[]): Promise<T[]> {
-    return this.repository.save(entities);
-  }
-
   async update(
     query:
       | string
