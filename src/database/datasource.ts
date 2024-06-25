@@ -1,14 +1,14 @@
 import * as path from "path";
 import { DataSource } from "typeorm";
-import { env } from "./database.env";
+import { databaseEnv } from "../config";
 
 const dataSource = new DataSource({
   type: "postgres",
-  host: env.DB_HOST,
-  port: +env.DB_PORT,
-  username: env.DB_USERNAME,
-  password: env.DB_PASSWORD,
-  database: env.DB_DATABASE,
+  host: databaseEnv.DB_HOST,
+  port: +databaseEnv.DB_PORT,
+  username: databaseEnv.DB_USERNAME,
+  password: databaseEnv.DB_PASSWORD,
+  database: databaseEnv.DB_DATABASE,
   entities: [path.join(__dirname, "/../**/*.entity{.ts,.js}")],
   synchronize: true,
 });
