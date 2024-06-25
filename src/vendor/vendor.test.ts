@@ -136,8 +136,8 @@ describe("VendorService", () => {
     });
 
     it("should return the product details for an onboarded vendor", async () => {
-      vendorRepo.save({ id: "vendor1", userId: "user1" } as Vendor);
-      productRepo.save({ id: "product1", vendorId: "vendor1" } as Product);
+      vendorRepo.save({ userId: "user1" } as Vendor);
+      productRepo.save({ vendorId: "vendor1" } as Product);
 
       const result = await vendorService.getProduct("user1", "product1");
 
