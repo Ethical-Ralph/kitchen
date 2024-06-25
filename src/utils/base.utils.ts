@@ -20,11 +20,7 @@ export const handleAsyncError = (fn: Function) => {
 export const validate =
   (schema: Joi.ObjectSchema<any>) =>
   (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate({
-      ...req.body,
-      ...req.params,
-      ...req.query,
-    });
+    const { error } = schema.validate(req.body);
 
     if (error) {
       // one error at a time
