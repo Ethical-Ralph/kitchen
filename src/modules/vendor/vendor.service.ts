@@ -1,4 +1,4 @@
-import { ConflictError } from "../../utils";
+import { ConflictError, NotFoundError } from "../../utils";
 import { PaginationDto, PaginationResultDto } from "../../utils/pagination";
 import { ProductRepo, VendorRepo } from "./repository";
 
@@ -77,7 +77,7 @@ export class VendorService {
     });
 
     if (!product) {
-      throw new ConflictError("Product not found");
+      throw new NotFoundError("Product not found");
     }
 
     return this.productRepo.findOne({
@@ -107,7 +107,7 @@ export class VendorService {
     });
 
     if (!product) {
-      throw new ConflictError("Product not found");
+      throw new NotFoundError("Product not found");
     }
 
     return this.productRepo.update(
@@ -128,7 +128,7 @@ export class VendorService {
     });
 
     if (!product) {
-      throw new ConflictError("Product not found");
+      throw new NotFoundError("Product not found");
     }
 
     return this.productRepo.delete({ id: productId, vendorId: vendor.id });
