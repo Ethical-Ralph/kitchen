@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { VendorService } from "./vendor.service";
-import { PaginationDto } from "../utils/pagination";
+import { PaginationDto } from "../../utils/pagination";
 
 export class VendorController {
   constructor(private vendorService: VendorService) {}

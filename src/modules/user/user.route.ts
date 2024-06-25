@@ -2,7 +2,7 @@ import express from "express";
 import { UserRepo } from "./repository";
 import { UserService } from "./user.service";
 import { UserController } from "./user.controller";
-import { handleAsyncError, validate } from "../utils";
+import { handleAsyncError, validate } from "../../utils";
 import { loginValidation, registerValidation } from "./user.validation";
 
 const userRouter = express.Router();

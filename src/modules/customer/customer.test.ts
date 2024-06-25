@@ -1,9 +1,8 @@
+import { MockBaseRepository } from "../../../test/base.repository";
+import { NotFoundError } from "../../utils";
+import { Order } from "../../utils/pagination";
+import { Product, Vendor } from "../vendor/entity";
 import { CustomerService } from "./customer.service";
-import { Vendor } from "../vendor/entity/vendor.entity";
-import { Product } from "../vendor/entity/product.entity";
-import { NotFoundError } from "../utils";
-import { MockBaseRepository } from "../../test/base.repository";
-import { Order } from "../utils/pagination";
 
 class MockVendorRepo extends MockBaseRepository<Vendor> {
   async findByUserId(userId: string): Promise<Vendor> {

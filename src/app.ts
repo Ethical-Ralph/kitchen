@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
-import { userRouter } from "./user";
+import { userRouter } from "./modules/user";
+import { vendorRouter } from "./modules/vendor";
+import { customerRouter } from "./modules/customer";
 import { HttpError } from "./utils";
-import { vendorRouter } from "./vendor";
-import { customerRouter } from "./customer";
 
 const app = express();
 

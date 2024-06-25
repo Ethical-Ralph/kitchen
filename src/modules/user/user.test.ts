@@ -1,9 +1,9 @@
 import { UserService } from "./user.service";
-import { BaseEntity } from "../database";
-import { MockBaseRepository } from "../../test/base.repository";
+import { BaseEntity } from "../../database";
+import { MockBaseRepository } from "../../../test/base.repository";
 import { User } from "./entity";
-import { BadRequestError, NotFoundError } from "../utils";
-import { UserRoleEnum } from "../interfaces";
+import { BadRequestError, NotFoundError } from "../../utils";
+import { UserRoleEnum } from "../../interfaces";
 
 class MockUser extends BaseEntity {
   id = "1";

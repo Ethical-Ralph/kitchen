@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { UserRoleEnum } from "../interfaces";
+import { UserRoleEnum } from "../../interfaces";
 
 const registerValidation = Joi.object({
   email: Joi.string().email().required(),

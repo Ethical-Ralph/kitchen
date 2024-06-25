@@ -1,11 +1,11 @@
 import express from "express";
 import { ProductRepo, VendorRepo } from "./repository";
-import { handleAsyncError, validate, validateParamsIds } from "../utils";
+import { handleAsyncError, validate, validateParamsIds } from "../../utils";
 import { VendorService } from "./vendor.service";
 import { VendorController } from "./vendor.controller";
-import { authMiddleware, authorize } from "../middleware";
+import { authMiddleware, authorize } from "../../middleware";
 import { onboardingValidation, productValidation } from "./vendor.validation";
-import { UserRoleEnum } from "../interfaces";
+import { UserRoleEnum } from "../../interfaces";
 
 const vendorRouter = express.Router();
 

@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { BaseRepository, dataSource } from "../../database";
+import { BaseRepository, dataSource } from "../../../database";
 import { User } from "../entity/user.entity";
 
 export class UserRepo extends BaseRepository<User> {

@@ -1,10 +1,10 @@
-import { UserRoleEnum } from "../interfaces";
+import { UserRoleEnum } from "../../interfaces";
 import {
   PasswordHelper,
   NotFoundError,
   JWTService,
   BadRequestError,
-} from "../utils";
+} from "../../utils";
 import { User } from "./entity";
 import { UserRepo } from "./repository";
 

@@ -1,5 +1,5 @@
-import { NotFoundError } from "../utils";
-import { PaginationDto, PaginationResultDto } from "../utils/pagination";
+import { NotFoundError } from "../../utils";
+import { PaginationResultDto, PaginationDto } from "../../utils/pagination";
 import { ProductRepo, VendorRepo } from "../vendor/repository";
 
 export class CustomerService {

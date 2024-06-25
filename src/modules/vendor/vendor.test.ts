@@ -1,8 +1,8 @@
 import { VendorService } from "./vendor.service";
-import { ConflictError } from "../utils";
-import { MockBaseRepository } from "../../test/base.repository";
+import { ConflictError } from "../../utils";
+import { MockBaseRepository } from "../../../test/base.repository";
 import { Product, Vendor } from "./entity";
-import { Order } from "../utils/pagination";
+import { Order } from "../../utils/pagination";
 
 class MockVendorRepo extends MockBaseRepository<Vendor> {
   async findByUserId(userId: string): Promise<Vendor> {

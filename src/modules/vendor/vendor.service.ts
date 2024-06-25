@@ -1,5 +1,5 @@
-import { ConflictError } from "../utils";
-import { PaginationDto, PaginationResultDto } from "../utils/pagination";
+import { ConflictError } from "../../utils";
+import { PaginationDto, PaginationResultDto } from "../../utils/pagination";
 import { ProductRepo, VendorRepo } from "./repository";
 
 export class VendorService {

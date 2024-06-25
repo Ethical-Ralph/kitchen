@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CustomerService } from "./customer.service";
-import { PaginationDto } from "../utils/pagination";
+import { PaginationDto } from "../../utils/pagination";
 
 export class CustomerController {
   constructor(private customerService: CustomerService) {}
