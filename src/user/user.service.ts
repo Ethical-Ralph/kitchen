@@ -1,11 +1,12 @@
+import { UserRoleEnum } from "../interfaces";
 import {
   PasswordHelper,
   NotFoundError,
   JWTService,
   BadRequestError,
 } from "../utils";
-import { User, UserRoleEnum } from "./entity";
-import { UserRepo } from "./repository/user.repository";
+import { User } from "./entity";
+import { UserRepo } from "./repository";
 
 export class UserService {
   constructor(private userRepo: UserRepo) {}

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { JWTService, UnauthorizedError } from "../utils";
+import { AuthUser } from "../interfaces";
 
 export async function authMiddleware(
   req: Request,
@@ -47,7 +48,7 @@ async function verifyAccessToken(authorization: string) {
       throw new UnauthorizedError("User not found");
     }
 
-    return user as { id: string; email: string; role: string };
+    return user as AuthUser;
   } catch (error) {
     if (error instanceof Error && error.name === "TokenExpiredError") {
       throw new UnauthorizedError("Access token has expired");

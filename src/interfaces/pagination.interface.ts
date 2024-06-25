@@ -1,4 +1,4 @@
-import { PaginationDto } from '../queries/dto/page-options.dto';
+import { PaginationDto } from "../utils/pagination";
 
 export interface PageMetaDtoParameters {
   pageOptionsDto: PaginationDto;
