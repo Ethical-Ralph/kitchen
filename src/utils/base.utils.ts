@@ -52,15 +52,25 @@ export const PaginationSchema = Joi.object({
 });
 
 export const validateParamsIds = (ids: string[]) => {
-  return validate(
-    Joi.object(
-      ids.reduce(
-        (acc, id) => ({
-          ...acc,
-          [id]: UUIDSchema.required(),
-        }),
-        {}
-      )
+  const schema = Joi.object(
+    ids.reduce(
+      (acc, id) => ({
+        ...acc,
+        [id]: UUIDSchema.required(),
+      }),
+      {}
     )
   );
+
+  return (req: Request, res: Response, next: NextFunction) => {
+    const { error } = schema.validate(req.params);
+
+    if (error) {
+      return next(
+        new HttpError(error.details.at(0)?.message || "Validation error", 400)
+      );
+    }
+
+    next();
+  };
 };
