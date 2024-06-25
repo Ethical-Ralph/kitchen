@@ -41,6 +41,7 @@ vendorRouter.get(
 vendorRouter.put(
   "/products/:id",
   validateParamsIds(["id"]),
+  validate(productValidation),
   handleAsyncError(vendorController.updateProduct.bind(vendorController))
 );
 
