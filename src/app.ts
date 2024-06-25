@@ -11,7 +11,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/vendor", vendorRouter);
 
 app.use((req: Request, res: Response) => {
-  res.status(404).json({ message: "Not found" });
+  res.status(404).json({ error: "Not found" });
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
