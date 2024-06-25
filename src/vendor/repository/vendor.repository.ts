@@ -9,7 +9,7 @@ export class VendorRepo extends BaseRepository<Vendor> {
     super(repository);
   }
 
-  async findByUserId(userId: string) {
-    return this.findOne({ where: { userId } });
+  async findByUserId(userId: string): Promise<Vendor> {
+    return this.findOne({ where: { userId } }) as Promise<Vendor>;
   }
 }
