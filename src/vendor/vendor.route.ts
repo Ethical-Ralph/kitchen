@@ -1,9 +1,10 @@
 import express from "express";
 import { ProductRepo, VendorRepo } from "./repository";
-import { handleAsyncError } from "../utils";
+import { handleAsyncError, validate, validateParamsIds } from "../utils";
 import { VendorService } from "./vendor.service";
 import { VendorController } from "./vendor.controller";
 import { authMiddleware } from "../middleware";
+import { onboardingValidation, productValidation } from "./vendor.validation";
 
 const vendorRouter = express.Router();
 
@@ -16,11 +17,13 @@ vendorRouter.use(authMiddleware);
 
 vendorRouter.post(
   "/onboard",
+  validate(onboardingValidation),
   handleAsyncError(vendorController.onboarding.bind(vendorController))
 );
 
 vendorRouter.post(
   "/products",
+  validate(productValidation),
   handleAsyncError(vendorController.addProduct.bind(vendorController))
 );
 
@@ -31,16 +34,19 @@ vendorRouter.get(
 
 vendorRouter.get(
   "/products/:id",
+  validateParamsIds(["id"]),
   handleAsyncError(vendorController.getProduct.bind(vendorController))
 );
 
 vendorRouter.put(
   "/products/:id",
+  validateParamsIds(["id"]),
   handleAsyncError(vendorController.updateProduct.bind(vendorController))
 );
 
 vendorRouter.delete(
   "/products/:id",
+  validateParamsIds(["id"]),
   handleAsyncError(vendorController.deleteProduct.bind(vendorController))
 );
 
