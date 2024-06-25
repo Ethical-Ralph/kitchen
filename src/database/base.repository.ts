@@ -35,10 +35,6 @@ export class BaseRepository<T extends BaseEntity> {
     return this.repository.findOne(query);
   }
 
-  create(entity: T): T {
-    return this.repository.create(entity);
-  }
-
   async save(entity: T): Promise<T> {
     return this.repository.save(entity);
   }

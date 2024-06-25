@@ -18,11 +18,11 @@ export class Vendor extends BaseEntity {
   phoneNumber: string;
 
   @OneToMany(() => Product, (product) => product.vendor)
-  products: Product[];
+  products?: Product[];
 
   @Column()
   userId: string;
 
   @OneToOne(() => User, { cascade: true, onDelete: "CASCADE" })
-  user: User;
+  user?: User;
 }
