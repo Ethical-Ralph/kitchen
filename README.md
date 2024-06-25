@@ -10,6 +10,8 @@ For endpoints documentation, please visit the [Postman Documentation](https://do
 
 The following environment variables are required for the project to run:
 
+Database: Postgres
+
 - `JWT_SECRET`: The secret key used for signing JWT tokens.
 - `PORT`: The port on which the server will run (default: 3000).
 - `DB_USERNAME`: The username for the database.
