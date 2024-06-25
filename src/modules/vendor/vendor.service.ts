@@ -72,6 +72,14 @@ export class VendorService {
       throw new ConflictError("You have not onboarded as a vendor");
     }
 
+    const product = await this.productRepo.findOne({
+      where: { vendorId: vendor.id, id: productId },
+    });
+
+    if (!product) {
+      throw new ConflictError("Product not found");
+    }
+
     return this.productRepo.findOne({
       where: { vendorId: vendor.id, id: productId },
     });
@@ -94,6 +102,14 @@ export class VendorService {
       throw new ConflictError("You have not onboarded as a vendor");
     }
 
+    const product = await this.productRepo.findOne({
+      where: { id: productId, vendorId: vendor.id },
+    });
+
+    if (!product) {
+      throw new ConflictError("Product not found");
+    }
+
     return this.productRepo.update(
       { id: productId, vendorId: vendor.id },
       data
@@ -105,6 +121,14 @@ export class VendorService {
 
     if (!vendor) {
       throw new ConflictError("You have not onboarded as a vendor");
+    }
+
+    const product = await this.productRepo.findOne({
+      where: { id: productId, vendorId: vendor.id },
+    });
+
+    if (!product) {
+      throw new ConflictError("Product not found");
     }
 
     return this.productRepo.delete({ id: productId, vendorId: vendor.id });
