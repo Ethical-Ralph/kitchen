@@ -7,20 +7,20 @@ export async function authMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  const { authorization } = req.headers;
-
-  if (!authorization) {
-    throw new UnauthorizedError("Authorization header is missing");
-  }
-
   try {
+    const { authorization } = req.headers;
+
+    if (!authorization) {
+      throw new UnauthorizedError("Authorization header is missing");
+    }
+
     const user = await verifyAccessToken(authorization);
 
     req.user = user;
 
     next();
   } catch (error) {
-    throw new UnauthorizedError("Invalid access token");
+    next(new UnauthorizedError("Invalid access token"));
   }
 }
 

@@ -54,6 +54,7 @@ export class VendorService {
 
     const [data, count] = await this.productRepo.findAndCount({
       where: { vendorId: vendor.id },
+      order: { createdAt: query.order },
       skip: query.skip,
       take: query.limit,
     });
