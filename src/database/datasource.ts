@@ -10,6 +10,9 @@ const dataSource = new DataSource({
   password: databaseEnv.DB_PASSWORD,
   database: databaseEnv.DB_DATABASE,
   entities: [path.join(__dirname, "/../**/*.entity{.ts,.js}")],
+  ssl: {
+    rejectUnauthorized: false,
+  },
   synchronize: true,
 });
 
