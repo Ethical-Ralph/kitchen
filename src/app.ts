@@ -9,8 +9,8 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/auth", userRouter);
-app.use("/api/vendor", vendorRouter);
-app.use("/api/customer", customerRouter);
+app.use("/api/vendors", vendorRouter);
+app.use("/api/customers", customerRouter);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ error: "Not found" });
