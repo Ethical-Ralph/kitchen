@@ -58,7 +58,7 @@ export class CustomerController {
   async getProducts(req: Request, res: Response) {
     const { vendorId } = req.query as { vendorId: string };
 
-    const q = Object.assign(req.query, new PaginationDto());
+    const q = Object.assign(new PaginationDto(), req.query);
 
     const products = await this.customerService.getProducts({
       vendorId,
