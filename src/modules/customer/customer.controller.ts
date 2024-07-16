@@ -50,4 +50,17 @@ export class CustomerController {
 
     res.json(product);
   }
+
+  async getProducts(req: Request, res: Response) {
+    const { vendorId } = req.query as { vendorId: string };
+
+    const q = Object.assign(new PaginationDto(), req.query);
+
+    const products = await this.customerService.getProducts({
+      vendorId,
+      query: q,
+    });
+
+    return res.json(products);
+  }
 }
