@@ -86,6 +86,7 @@ export class CustomerService {
         : null),
       skip: data.query.skip,
       take: data.query.limit,
+      order: { createdAt: data.query.order },
     });
 
     return new PaginationResultDto(products, {
