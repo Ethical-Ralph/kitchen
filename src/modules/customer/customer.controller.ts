@@ -48,11 +48,7 @@ export class CustomerController {
       productId
     );
 
-    res.json({
-      sucess: true,
-      data: product,
-      message: "Vendor fetched successfully",
-    });
+    res.json(product);
   }
 
   async getProducts(req: Request, res: Response) {
