@@ -1,3 +1,4 @@
+import { query } from "express";
 import { NotFoundError } from "../../utils";
 import { PaginationResultDto, PaginationDto } from "../../utils/pagination";
 import { ProductRepo, VendorRepo } from "../vendor/repository";
@@ -68,5 +69,28 @@ export class CustomerService {
     }
 
     return product;
+  }
+
+  async getProducts(data: { vendorId?: string; query: PaginationDto }) {
+    if (data.vendorId && !(await this.vendorRepo.findById(data.vendorId))) {
+      throw new NotFoundError("Vendor not found");
+    }
+
+    const [products, count] = await this.productRepo.findAndCount({
+      ...(data.vendorId
+        ? {
+            where: {
+              vendorId: data.vendorId,
+            },
+          }
+        : null),
+      skip: data.query.skip,
+      take: data.query.limit,
+    });
+
+    return new PaginationResultDto(products, {
+      itemCount: count,
+      pageOptionsDto: data.query,
+    });
   }
 }

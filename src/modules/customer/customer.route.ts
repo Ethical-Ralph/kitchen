@@ -11,34 +11,41 @@ const customerRouter = express.Router();
 const vendorRepo = new VendorRepo();
 const productRepo = new ProductRepo();
 
-const vendorService = new CustomerService(vendorRepo, productRepo);
-const vendorController = new CustomerController(vendorService);
+const customerService = new CustomerService(vendorRepo, productRepo);
+const customerController = new CustomerController(customerService);
 
 customerRouter.use(authMiddleware);
 
 customerRouter.use(authorize(UserRoleEnum.CUSTOMER));
 
 customerRouter.get(
+  "/products",
+  handleAsyncError(customerController.getProducts.bind(customerController))
+);
+
+customerRouter.get(
   "/vendors",
-  handleAsyncError(vendorController.getVendors.bind(vendorController))
+  handleAsyncError(customerController.getVendors.bind(customerController))
 );
 
 customerRouter.get(
   "/vendors/:id",
   validateParamsIds(["id"]),
-  handleAsyncError(vendorController.getVendor.bind(vendorController))
+  handleAsyncError(customerController.getVendor.bind(customerController))
 );
 
 customerRouter.get(
   "/vendors/:id/products",
   validateParamsIds(["id"]),
-  handleAsyncError(vendorController.getVendorProducts.bind(vendorController))
+  handleAsyncError(
+    customerController.getVendorProducts.bind(customerController)
+  )
 );
 
 customerRouter.get(
   "/vendors/:vendorId/products/:productId",
   validateParamsIds(["vendorId", "productId"]),
-  handleAsyncError(vendorController.getVendorProduct.bind(vendorController))
+  handleAsyncError(customerController.getVendorProduct.bind(customerController))
 );
 
 export { customerRouter };

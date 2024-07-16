@@ -48,6 +48,23 @@ export class CustomerController {
       productId
     );
 
-    res.json(product);
+    res.json({
+      sucess: true,
+      data: product,
+      message: "Vendor fetched successfully",
+    });
+  }
+
+  async getProducts(req: Request, res: Response) {
+    const { vendorId } = req.query as { vendorId: string };
+
+    const q = Object.assign(req.query, new PaginationDto());
+
+    const products = await this.customerService.getProducts({
+      vendorId,
+      query: q,
+    });
+
+    return res.json(products);
   }
 }
